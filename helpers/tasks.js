@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid"
+
 export let tasks = [
   {
     id: 0,
@@ -16,21 +18,16 @@ export let tasks = [
   }
 ]
 export const addTask = task => {
-  let id = Math.max.apply(null, [0, ...tasks.map(element => element.id)])+1
-  tasks.push({
-    id: id,
-    desc: task.desc,
-    state: task.state
-  })
-  return tasks
+  task.id = nanoid()
+  tasks.push(task)
+  return task
 }
-export const deleteTask = id => tasks = tasks.filter(element => element.id !== id)
 export const editTask = (id, task) => {
-  console.log(task)
   tasks = tasks.map(element => element.id !== id ? element : {
     id: id,
     desc: task.desc,
     state: task.state
   })
-  return tasks
+  return tasks.find(element => element.id === id)
 }
+export const deleteTask = id => tasks = tasks.filter(element => element.id !== id)
