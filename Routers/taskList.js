@@ -41,8 +41,3 @@ listRouter.get("/:id", (req, res) => {
   if (id < 0 || id >= tasks.length) return res.status(400).json("Bad id")
   return res.status(200).json(tasks.find(element => element.id === id))
 })
-
-
-
-
-
